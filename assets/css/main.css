@@ -21,10 +21,10 @@ body {
 #text-wrapper{
     /* position: absolute; */
     /* margin: calc(attr(data-h px) * 6) calc(attr(data-char-w px) * 12); */
-    margin: attr(data-vertical px) attr(data-horizontal px);
+    padding: attr(data-vertical px) attr(data-horizontal px);
     margin-bottom: 0px;
-    padding-bottom: calc(6 * attr(data-h px) - calc(attr(data-h px) - attr(data-line-h px)));
-    padding-bottom: calc(6 * attr(data-h px) - calc(attr(data-h px) - attr(data-line-h px)));
+    /* padding-bottom: calc(6 * attr(data-h px) - calc(attr(data-h px) - attr(data-line-h px))); */
+    /* padding-bottom: calc(6 * attr(data-h px) - calc(attr(data-h px) - attr(data-line-h px))); */
     /* width: calc(100% - calc(attr(data-char-w px) * 24)); */
     /* width: calc(100% - calc(attr(data-w px) * 24)); */
     /* width: calc(100% - calc(attr(data-w px) * 24)); */
