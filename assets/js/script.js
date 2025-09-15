@@ -70,7 +70,11 @@ function typeFill() {
 
   // y-axis element
   const line = document.createElement('p');
-  line.setAttribute('data-h', addH);
+  line.style.height = addH + 'px';
+  line.style.lineHeight = addH + 'px';
+  line.style.letterSpacing = (addW - charW) + 'px';
+  // line.style.lineHeight = '115.7%';
+  // line.setAttribute('data-h', addH);
   line.className = 'line';
   // line.setAttribute('style', 'font-size:' + measureFS + 'px');
   // document.body.appendChild(line)
@@ -78,7 +82,8 @@ function typeFill() {
   // x-axis element
   const char = document.createElement('span');
   char.className = 'char';
-  char.setAttribute('data-w', addW);
+  // char.style.letterSpacing = ;
+  // char.setAttribute('data-w', addW);
   // line.appendChild(char)
 
 
@@ -100,7 +105,7 @@ function typeFill() {
       } else if (i <= 2 * (2 ** (n - 1)) - 1 && i > (2 ** (n - 1)) - 1 || i >= lineNR - 2 * (2 ** (n - 1)) && i < lineNR - (2 ** (n - 1)) || j <= 2 * (2 ** n) - 1 && j > (2 ** n) - 1 || j >= charNR - 2 * (2 ** n) && j < charNR - (2 ** n)){
         cloneChar.textContent = '░'
       } else {
-        cloneChar.textContent = ' '
+        cloneChar.textContent = ' '
       }
       cloneLine.appendChild(cloneChar);
     }
@@ -109,29 +114,50 @@ function typeFill() {
   
   bgCont.appendChild(frag);
   
-// data attributes
+// setting attributes
 
 // setting line height of <p> in #text-wrapper
   textWrapP.forEach(p => {
-    p.setAttribute('data-h', addH)
-    p.setAttribute('data-w', addW);
-    p.setAttribute('data-char-w', charW);
+    p.style.letterSpacing = (addW - charW) + 'px';
+    p.style.lineHeight = addH + 'px';
+    // p.setAttribute('data-h', addH)
+    // p.setAttribute('data-w', addW);
+    // p.setAttribute('data-char-w', charW);
   });
-  textWrap.setAttribute('data-w', addW);
-  textWrap.setAttribute('data-h', addH);
-  textWrap.setAttribute('data-char-w', charW);
-  textWrap.setAttribute('data-line-h', charH);
-  textWrap.setAttribute('data-horizontal', addW * (4 * (2 ** (n - 1))));
-  textWrap.setAttribute('data-vertical', addH * (2 * (2 ** (n - 1))));
+
+  const textWrapStyles = {
+    margin: (addH * (2 * (2 ** (n - 1)))) + 'px ' + (addW * (4 * (2 ** (n - 1)))) + 'px',
+    paddingBottom: (6 * addH) - (addH - charH) + 'px',
+  };
+  Object.assign(textWrap.style, textWrapStyles);
+
+  // textWrap.setAttribute('style', "margin: " + (addH * (2 * (2 ** (n - 1)))) + "px " + (addW * (4 * (2 ** (n - 1)))) + "px")
+  // textWrap.setAttribute('style', "padding-bottom: ")
+  // textWrap.setAttribute('data-w', addW);
+  // textWrap.setAttribute('data-h', addH);
+  // textWrap.setAttribute('data-char-w', charW);
+  // textWrap.setAttribute('data-line-h', charH);
+  // textWrap.setAttribute('data-horizontal', addW * (4 * (2 ** (n - 1))));
+  // textWrap.setAttribute('data-vertical', addH * (2 * (2 ** (n - 1))));
 
    // nav
-  header.setAttribute('data-w', addW);  
-  header.setAttribute('data-h', addH);
+  const headerStyles = {
+    top: addH + 'px',
+    left: addW + 'px'
+  };
+  Object.assign(header.style, headerStyles);
+  // header.setAttribute('data-w', addW);  
+  // header.setAttribute('data-h', addH);
 
-  side.setAttribute('data-w', addW);
-  side.setAttribute('data-h', addH);
-  side.setAttribute('data-left', addW * ((2 ** n) - 2));
-  side.setAttribute('data-top', addH * (2 ** (n - 1)));
+  const sideStyles = {
+    top: (addH * (2 ** (n - 1))) + 'px',
+    left: (addW * ((2 ** n) - 2)) + 'px'
+  };
+  Object.assign(side.style, sideStyles);
+  // side.setAttribute('data-w', addW);
+  // side.setAttribute('data-h', addH);
+  // side.setAttribute('data-left', addW * ((2 ** n) - 2));
+  // side.setAttribute('data-top', addH * (2 ** (n - 1)));
 
   footer.setAttribute('data-w', addW);
   footer.setAttribute('data-h', addH);

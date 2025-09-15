@@ -21,8 +21,8 @@ body {
 #text-wrapper{
     /* position: absolute; */
     /* margin: calc(attr(data-h px) * 6) calc(attr(data-char-w px) * 12); */
-    padding: attr(data-vertical px) attr(data-horizontal px);
-    margin-bottom: 0px;
+    /* margin: attr(data-vertical px) attr(data-horizontal px); */
+    margin-bottom: 0px !important;
     /* padding-bottom: calc(6 * attr(data-h px) - calc(attr(data-h px) - attr(data-line-h px))); */
     /* padding-bottom: calc(6 * attr(data-h px) - calc(attr(data-h px) - attr(data-line-h px))); */
     /* width: calc(100% - calc(attr(data-char-w px) * 24)); */
@@ -45,24 +45,24 @@ body {
 
 #header{
     display: inline-flex;
-    top: calc(attr(data-h px));
-    left: calc(2 * attr(data-w px));
+    /* top: calc(attr(data-h px)); */
+    /* left: calc(2 * attr(data-w px)); */
 }
 
 #header p{
-    margin-right: attr(data-w px);
+    /* margin-right: attr(data-w px); */
 }
 
 #side{
     /* top: calc(2 * attr(data-h px)); */
-    top: attr(data-top px);
-    left: attr(data-left px);
+    /* top: attr(data-top px); */
+    /* left: attr(data-left px); */
     /* left: 0; */
     /* left: calc(attr(data-quality px)); */
 }
 
 #side div{
-    margin-top: attr(data-h px);
+    /* margin-top: attr(data-h px); */
 }
 
 #side p{
@@ -80,7 +80,7 @@ body {
 }
 
 #side .quality-options{
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 
 #body-text p{
@@ -89,10 +89,10 @@ body {
 
 p, #measure{
     font-kerning: none;
-    letter-spacing: calc(attr(data-w px) - attr(data-char-w px));
+    /* letter-spacing: calc(attr(data-w px) - attr(data-char-w px)); */
     /* word-spacing: calc(attr(data-w px) - attr(data-char-w px)); */
     display: flex;
-    line-height: attr(data-h px);
+    /* line-height: attr(data-h px); */
     margin: 0;
     overflow-wrap: break-word;
     hyphens: auto;
@@ -112,5 +112,5 @@ p, #measure{
 
 span{
     /* display: inline-flex; */
-    width: attr(data-w px) !important;
+    /* width: attr(data-w px) !important; */
 }
