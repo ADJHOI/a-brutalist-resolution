@@ -14,6 +14,7 @@ const active = document.getElementsByClassName('quality active');
 const lq = document.getElementById('lq');
 const nq = document.getElementById('nq');
 const hq = document.getElementById('hq');
+const grid = document.getElementById('grid');
 
 const totalChar = document.getElementById('char-no');
 const totalLine = document.getElementById('line-no');
@@ -173,6 +174,10 @@ function changeQuality (){
   textWrap.setAttribute('data-quality', n);
 }
 
+function toggleGrid (){
+
+}
+
   // observing font size change
 const fontObserver = new MutationObserver(mutationsList => {
   for (const mutation of mutationsList) {
@@ -182,10 +187,10 @@ const fontObserver = new MutationObserver(mutationsList => {
       // let measureFS = bgCont.className;
 
     // new way of chang'g font size
-      n= parseInt(bgCont.getAttribute('data-quality'));
+      n = parseInt(bgCont.getAttribute('data-quality'));
       bgCont.className = 'q-' + n;
       textWrap.className = 'q-' + n;
-      console.log(`Attribute "${mutation.attributeName}" changed on element:`, mutation.target);
+      // console.log(`Attribute "${mutation.attributeName}" changed on element:`, mutation.target);
 
     // Further logic to handle the CSS change
       // console.log(x);

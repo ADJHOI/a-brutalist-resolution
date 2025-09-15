@@ -61,6 +61,10 @@ body {
     /* left: calc(attr(data-quality px)); */
 }
 
+#side div{
+    margin-top: attr(data-h px);
+}
+
 #side p{
     flex-direction: row-reverse;
 }
@@ -73,6 +77,10 @@ body {
     text-decoration: underline;
     text-underline-offset: 0.275em;
     font-weight: bold;
+}
+
+#side .quality-options{
+    margin-bottom: 20px;
 }
 
 #body-text p{
