@@ -1,0 +1,108 @@
+body {
+    font-family: 'Courier New', monospace;
+    padding: 0;
+    margin: 0;
+    /* width: calc(100%);
+    height: calc(100%); */
+    /* overflow-x: hidden; */
+    /* overflow-y: hidden; */
+}
+
+#bg-cont{
+    width: calc(100%);
+    height: calc(100%);
+    overflow: hidden;
+    position: fixed;
+    z-index: -1;
+    top: 0px;
+    left: 0px;
+}
+
+#text-wrapper{
+    /* position: absolute; */
+    /* margin: calc(attr(data-h px) * 6) calc(attr(data-char-w px) * 12); */
+    margin: attr(data-vertical px) attr(data-horizontal px);
+    margin-bottom: 0px;
+    padding-bottom: calc(6 * attr(data-h px) - calc(attr(data-h px) - attr(data-line-h px)));
+    padding-bottom: calc(6 * attr(data-h px) - calc(attr(data-h px) - attr(data-line-h px)));
+    /* width: calc(100% - calc(attr(data-char-w px) * 24)); */
+    /* width: calc(100% - calc(attr(data-w px) * 24)); */
+    /* width: calc(100% - calc(attr(data-w px) * 24)); */
+}
+
+#header, #side{
+    position: fixed;
+}
+
+#header p, #side p, #footer p{
+    cursor: pointer;
+    background-color: white;
+}
+
+#header p:hover, #side p:hover, #footer p:hover{
+    font-weight: bold;
+}
+
+#header{
+    display: inline-flex;
+    top: calc(attr(data-h px));
+    left: calc(2 * attr(data-w px));
+}
+
+#header p{
+    margin-right: attr(data-w px);
+}
+
+#side{
+    /* top: calc(2 * attr(data-h px)); */
+    top: attr(data-top px);
+    left: attr(data-left px);
+    /* left: 0; */
+    /* left: calc(attr(data-quality px)); */
+}
+
+#side p{
+    flex-direction: row-reverse;
+}
+
+#side .active{
+    font-weight: bold;
+}
+
+#side p:first-child{
+    text-decoration: underline;
+    text-underline-offset: 0.275em;
+    font-weight: bold;
+}
+
+#body-text p{
+    display: block;
+}
+
+p, #measure{
+    font-kerning: none;
+    letter-spacing: calc(attr(data-w px) - attr(data-char-w px));
+    /* word-spacing: calc(attr(data-w px) - attr(data-char-w px)); */
+    display: flex;
+    line-height: attr(data-h px);
+    margin: 0;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.q-3 p{
+    font-size: 8px;
+}
+
+.q-2 p{
+    font-size: 16px;
+}
+
+.q-1 p{
+    font-size: 32px;
+}
+
+span{
+    /* display: inline-flex; */
+    width: attr(data-w px) !important;
+}
