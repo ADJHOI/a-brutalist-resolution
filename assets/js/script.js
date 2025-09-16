@@ -15,6 +15,7 @@ const active = document.getElementsByClassName('quality active');
 const lq = document.getElementById('lq');
 const nq = document.getElementById('nq');
 const hq = document.getElementById('hq');
+const toggleGrid = document.getElementById('toggle-grid');
 const grid = document.getElementById('grid');
 
 const totalChar = document.getElementById('char-no');
@@ -29,6 +30,7 @@ const contentCharPerLine = document.getElementById('content-cpl');
 let measureFS = bgCont.className;
 let n = parseInt(bgCont.getAttribute('data-quality'));
 console.log(n);
+let charFill = ' ';
 
 function typeFill() {
   const span = bgCont.getElementsByTagName('span');
@@ -106,7 +108,7 @@ function typeFill() {
       } else if (i <= 2 * (2 ** (n - 1)) - 1 && i > (2 ** (n - 1)) - 1 || i >= lineNR - 2 * (2 ** (n - 1)) && i < lineNR - (2 ** (n - 1)) || j <= 2 * (2 ** n) - 1 && j > (2 ** n) - 1 || j >= charNR - 2 * (2 ** n) && j < charNR - (2 ** n)){
         cloneChar.textContent = '░'
       } else {
-        cloneChar.textContent = ' '
+        cloneChar.textContent = charFill;
       }
       cloneLine.appendChild(cloneChar);
     }
@@ -115,14 +117,14 @@ function typeFill() {
   
   bgCont.appendChild(frag);
   
-// setting attributes
+// SETTING ATTRIBUTES
 
 // setting line height of <p> in #text-wrapper
   textWrapP.forEach(p => {
     p.style.letterSpacing = (addW - charW) + 'px';
     p.style.lineHeight = addH + 'px';
-    // p.setAttribute('data-h', addH)
-    // p.setAttribute('data 〿-w', addW);
+    // p.setAttribute('data-h', addH);
+    // p.setAttribute('data-w', addW);
     // p.setAttribute('data-char-w', charW);
   });
 
@@ -141,7 +143,7 @@ function typeFill() {
   // textWrap.setAttribute('data-horizontal', addW * (4 * (2 ** (n - 1))));
   // textWrap.setAttribute('data-vertical', addH * (2 * (2 ** (n - 1))));
 
-   // nav
+   // NAV
   const headerStyles = {
     top: addH + 'px',
     left: addW + 'px'
@@ -159,13 +161,16 @@ function typeFill() {
   sideP.forEach(p => {
     p.style.height = addH + 'px';
   });
+
+  toggleGrid.style.marginTop = addH + 'px';
+
   // side.setAttribute('data-w', addW);
   // side.setAttribute('data-h', addH);
   // side.setAttribute('data-left', addW * ((2 ** n) - 2));
   // side.setAttribute('data-top', addH * (2 ** (n - 1)));
 
-  footer.setAttribute('data-w', addW);
-  footer.setAttribute('data-h', addH);
+  // footer.setAttribute('data-w', addW);
+  // footer.setAttribute('data-h', addH);
 
   totalChar.textContent = charNR * lineNR;
   totalLine.textContent = lineNR;
@@ -179,6 +184,7 @@ function typeFill() {
   // if(lineNo[0]){
   //   charNo[12].textContent = "X";
   // }
+
     // debug
   // console.log(charW);
   // console.log(winW);
@@ -205,8 +211,14 @@ function changeQuality (){
   textWrap.setAttribute('data-quality', n);
 }
 
-function toggleGrid (){
-
+function typeGrid (){
+  grid.classList.toggle('active');
+  if (grid.classList.contains('active')){
+    charFill = 'X'
+  } else {
+    charFill = ' ';
+  }
+  typeFill();
 }
 
   // observing font size change
@@ -238,3 +250,4 @@ window.addEventListener('resize', typeFill);
 lq.addEventListener('click', changeQuality)
 nq.addEventListener('click', changeQuality)
 hq.addEventListener('click', changeQuality)
+grid.addEventListener('click', typeGrid)

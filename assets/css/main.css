@@ -73,7 +73,7 @@ body {
     font-weight: bold;
 }
 
-#side p:first-child{
+.nav-heading{
     text-decoration: underline;
     text-underline-offset: 0.275em;
     font-weight: bold;
