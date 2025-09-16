@@ -6,6 +6,7 @@ const textWrap = document.getElementById('text-wrapper');
 const textWrapP = textWrap.querySelectorAll('p');
 const header = document.getElementById('header');
 const side = document.getElementById('side');
+const sideP = side.querySelectorAll('p');
 const footer = document.getElementById('footer');
 
 const quality = document.getElementsByClassName('quality');
@@ -121,7 +122,7 @@ function typeFill() {
     p.style.letterSpacing = (addW - charW) + 'px';
     p.style.lineHeight = addH + 'px';
     // p.setAttribute('data-h', addH)
-    // p.setAttribute('data-w', addW);
+    // p.setAttribute('data 〿-w', addW);
     // p.setAttribute('data-char-w', charW);
   });
 
@@ -154,6 +155,10 @@ function typeFill() {
     left: (addW * ((2 ** n) - 2)) + 'px'
   };
   Object.assign(side.style, sideStyles);
+
+  sideP.forEach(p => {
+    p.style.height = addH + 'px';
+  });
   // side.setAttribute('data-w', addW);
   // side.setAttribute('data-h', addH);
   // side.setAttribute('data-left', addW * ((2 ** n) - 2));
