@@ -108,6 +108,7 @@ function typeFill() {
       } else if (i <= 2 * (2 ** (n - 1)) - 1 && i > (2 ** (n - 1)) - 1 || i >= lineNR - 2 * (2 ** (n - 1)) && i < lineNR - (2 ** (n - 1)) || j <= 2 * (2 ** n) - 1 && j > (2 ** n) - 1 || j >= charNR - 2 * (2 ** n) && j < charNR - (2 ** n)){
         cloneChar.textContent = '░'
       } else {
+        cloneChar.classList.add('character-grid');
         cloneChar.textContent = charFill;
       }
       cloneLine.appendChild(cloneChar);

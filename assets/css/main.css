@@ -2,6 +2,8 @@ body {
     font-family: 'Courier New', monospace;
     padding: 0;
     margin: 0;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smooth: antialiased !important;
     /* width: calc(100%);
     height: calc(100%); */
     /* overflow-x: hidden; */
@@ -96,6 +98,10 @@ p, #measure{
     margin: 0;
     overflow-wrap: break-word;
     hyphens: auto;
+}
+
+.character-grid{
+    opacity: 0.4;
 }
 
 .q-3 p{
