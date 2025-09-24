@@ -1,6 +1,5 @@
 // Getting pixel width of span element
 const bgCont = document.getElementById('bg-cont');
-// const bodyEl = document.body;
 const bgp = bgCont.getElementsByTagName('p');
 const measure = document.getElementById('measure');
 const textWrap = document.getElementById('text-wrapper');
@@ -10,8 +9,6 @@ const side = document.getElementById('side');
 const sideP = side.querySelectorAll('p');
 const footer = document.getElementById('footer');
 const bodyText = document.getElementById('body-text');
-
-// write if condition
 const charInfo = document.getElementsByClassName('char-info');
 const charInfoP = charInfo[0].querySelectorAll('p');
 
@@ -25,18 +22,12 @@ const toggleGrid = document.getElementById('toggle-grid');
 const grid = document.getElementById('grid');
 
 const fontSize = document.getElementById('font-size');
-const charWSpan = document.getElementById('char-w');
-const charHSpan = document.getElementById('char-h');
-const winWSpan = document.getElementById('win-w');
-const winHSpan = document.getElementById('win-h');
 const totalChar = document.getElementById('char-no');
 const totalLine = document.getElementById('line-no');
 const charPerLine = document.getElementById('cpl');
 const contentTotalChar = document.getElementById('content-char-no');
 const contentTotalLine = document.getElementById('content-line-no');
 const contentCharPerLine = document.getElementById('content-cpl');
-const lineH = document.getElementById('line-h');
-const letterSp = document.getElementById('letter-sp');
 
 // let measureFS = parseInt(measure.style.fontSize);
 let measureFS = bgCont.className;
@@ -73,29 +64,33 @@ function typeFill() {
   charInit.remove();
 
   // type fill - width
-  let winW = window.innerWidth;
-  let charN = winW / charW;
-  let charNR = Math.floor(charN);
-  let addW = ((winW - (charW * charNR)) / charNR) + charW;
+  var winW = window.innerWidth + 1;
+  var charN = winW / charW;
+  var charNR = Math.floor(charN);
+  var addW = ((winW - (charW * charNR)) / charNR) + charW;
 
   // type fill - height
-  let winH = window.innerHeight;
-  let lineN = winH / charH;
-  let lineNR = Math.floor(lineN);
-  let addH = ((winH - (charH * lineNR)) / lineNR) + charH;
+  var winH = window.innerHeight + 1;
+  var lineN = winH / charH;
+  var lineNR = Math.floor(lineN);
+  var addH = ((winH - (charH * lineNR)) / lineNR) + charH;
 
   // y-axis element
   const line = document.createElement('p');
   line.style.height = addH + 'px';
   line.style.lineHeight = addH + 'px';
   line.style.letterSpacing = (addW - charW) + 'px';
+  // line.style.lineHeight = '115.7%';
+  // line.setAttribute('data-h', addH);
   line.className = 'line';
+  // line.setAttribute('style', 'font-size:' + measureFS + 'px');
   // document.body.appendChild(line)
 
   // x-axis element
   const char = document.createElement('span');
   char.className = 'char';
   // char.style.letterSpacing = ;
+  // char.setAttribute('data-w', addW);
   // line.appendChild(char)
 
 
@@ -104,30 +99,22 @@ function typeFill() {
     // i = number of lines / y-axis
   for (let i = 0; i < lineNR; i++) {
     const cloneLine = line.cloneNode(true);
+    // cloneLine.classList.add(i);
+    // bgCont.appendChild(cloneLine);
 
       // j = number of characters / x-axis
     for (let j = 0; j < charNR; j++) {
 
       const cloneChar = char.cloneNode(true);
       // cloneChar.classList.add(j);
-      if (i <= (2 * (2 ** (n - 1))) - 1 || i >= lineNR - (2 * (2 ** (n - 1))) || j <= (4 * (2 ** (n - 1))) - 1 || j >= charNR - (4 * (2 ** (n - 1)))) {
-        if (i <= (1 * (2 ** (n - 1))) - 1 || i >= lineNR - (1 * (2 ** (n - 1))) || j <= (2 * (2 ** (n - 1))) - 1 || j >= charNR - (2 * (2 ** (n - 1)))) {
-          cloneChar.textContent = '█';
-        } else {
-          cloneChar.textContent = '▒';
-        }
+      if (i <= (2 ** (n - 1)) - 1 || i >= lineNR - (2 ** (n - 1)) || j <= (2 ** n) - 1 || j >= charNR - (2 ** n)) {
+        cloneChar.textContent = '▓'
+      } else if (i <= 2 * (2 ** (n - 1)) - 1 && i > (2 ** (n - 1)) - 1 || i >= lineNR - 2 * (2 ** (n - 1)) && i < lineNR - (2 ** (n - 1)) || j <= 2 * (2 ** n) - 1 && j > (2 ** n) - 1 || j >= charNR - 2 * (2 ** n) && j < charNR - (2 ** n)){
+        cloneChar.textContent = '░'
       } else {
         cloneChar.classList.add('character-grid');
         cloneChar.textContent = charFill;
       }
-      // if (i <= (2 ** (n - 1)) - 1 || i >= lineNR - (2 ** (n - 1)) || j <= (2 ** n) - 1 || j >= charNR - (2 ** n)) {
-      //   cloneChar.textContent = '▓'
-      // } else if (i <= 2 * (2 ** (n - 1)) - 1 && i > (2 ** (n - 1)) - 1 || i >= lineNR - 2 * (2 ** (n - 1)) && i < lineNR - (2 ** (n - 1)) || j <= 2 * (2 ** n) - 1 && j > (2 ** n) - 1 || j >= charNR - 2 * (2 ** n) && j < charNR - (2 ** n)){
-      //   cloneChar.textContent = '░'
-      // } else {
-      //   cloneChar.classList.add('character-grid');
-      //   cloneChar.textContent = charFill;
-      // }
       cloneLine.appendChild(cloneChar);
     }
     frag.appendChild(cloneLine);
@@ -141,6 +128,9 @@ function typeFill() {
   textWrapP.forEach(p => {
     p.style.letterSpacing = (addW - charW) + 'px';
     p.style.lineHeight = addH + 'px';
+    // p.setAttribute('data-h', addH);
+    // p.setAttribute('data-w', addW);
+    // p.setAttribute('data-char-w', charW);
   });
 
   charInfoP.forEach(p => {
@@ -148,13 +138,20 @@ function typeFill() {
   });
 
   const textWrapStyles = {
-    margin: (addH * (2 * (2 ** (n - 1)))) + 'px ' + (addW * (4 * (2 ** (n - 1)))) + 'px',
-    // marginLeft: ((addW * (4 * (2 ** (n - 1)))) + (addW - charW)) + 'px',
-    marginRight: (addW * (4 * (2 ** (n - 1)))) - ((addW - charW) * (9 * (2 ** (n - 1)))) + 'px',
+    margin: (addH * (2 * (2 ** (n - 1)))) - (2 * (addH - charH)) + 'px ' + (addW * (4 * (2 ** (n - 1)))) + 'px',
     paddingBottom: (addH * (2 * (2 ** (n - 1)))) - (1 * (addH - charH)) + 'px',
     minHeight: (addH * (lineNR - (4 * (2 ** (n - 1)))))  - (2 * (addH - charH)) + 'px'
   };
   Object.assign(textWrap.style, textWrapStyles);
+
+  // textWrap.setAttribute('style', "margin: " + (addH * (2 * (2 ** (n - 1)))) + "px " + (addW * (4 * (2 ** (n - 1)))) + "px")
+  // textWrap.setAttribute('style', "padding-bottom: ")
+  // textWrap.setAttribute('data-w', addW);
+  // textWrap.setAttribute('data-h', addH);
+  // textWrap.setAttribute('data-char-w', charW);
+  // textWrap.setAttribute('data-line-h', charH);
+  // textWrap.setAttribute('data-horizontal', addW * (4 * (2 ** (n - 1))));
+  // textWrap.setAttribute('data-vertical', addH * (2 * (2 ** (n - 1))));
 
    // NAV
   const headerStyles = {
@@ -162,6 +159,8 @@ function typeFill() {
     left: addW + 'px'
   };
   Object.assign(header.style, headerStyles);
+  // header.setAttribute('data-w', addW);  
+  // header.setAttribute('data-h', addH);
 
   const sideStyles = {
     top: (addH * (2 ** (n - 1))) + 'px',
@@ -175,24 +174,38 @@ function typeFill() {
 
   toggleGrid.style.marginTop = addH + 'px';
 
+  // side.setAttribute('data-w', addW);
+  // side.setAttribute('data-h', addH);
+  // side.setAttribute('data-left', addW * ((2 ** n) - 2));
+  // side.setAttribute('data-top', addH * (2 ** (n - 1)));
+
+  // footer.setAttribute('data-w', addW);
+  // footer.setAttribute('data-h', addH);
+
   fontSize.textContent = (32 * (0.5 ** (n - 1)));
-
-  charWSpan.textContent = charW;
-  charHSpan.textContent = charH;
-
-  winWSpan.textContent = winW;
-  winHSpan.textContent = winH;
-  
   totalChar.textContent = (charNR * lineNR);
   totalLine.textContent = lineNR;
   charPerLine.textContent = charNR;
+  charPerLine.style.marginBottom = addH;
 
   contentTotalChar.textContent = (lineNR - (4 * (2 ** (n - 1)))) * (charNR - (8 * (2 **(n - 1))));
   contentTotalLine.textContent = lineNR - (4 * (2 ** (n - 1)));
   contentCharPerLine.textContent = charNR - (8 * (2 **(n - 1)));
 
-  lineH.textContent = addH;
-  letterSp.textContent = addW - charW;
+  // if (bodyText.classList.contains('char-info')) {
+  //   // const infoText = document.getElementById('info-text');
+  //   // infoText.remove();
+  //   const bodyInfo = document.createElement('p');
+  //   bodyInfo.id = "info-text";
+  //   bodyInfo.innerHTML = "This website is typeset in Courier New at " + (32 * (0.5 ** (n-1))) + ' pixels (px). <br><br> This screen can fit a total of ' + (charNR * lineNR) + 
+  //   bodyText.appendChild(bodyInfo)
+  // };
+
+  // const charNo = document.getElementsByClassName('char');
+  // if(lineNo[0]){
+  //   charNo[12].textContent = "X";
+  // }
+
     // debug
   // console.log(charW);
   // console.log(winW);
@@ -203,11 +216,18 @@ function typeFill() {
   // console.log("No. of characters per line: " + charNR);
   // console.log("Total no. of characters: " + (lineNR * charNR));
   // console.log(addW);
-
   // content area
   // console.log("Content area no. of lines: " + (lineNR - (4 * (2 ** (n - 1)))));
   // console.log("Content area no. of characters: ");
   // console.log("Content area no. of characters per line: ");
+
+  // const hellow = document.getElementById('hello');
+  // const hellowH = hellow.getBoundingClientRect();
+  // console.log(hellowH.height + (addH - charH));
+  // // console.log(hellowH.height / addH);
+  // // console.log(hellowH.height + (hellowH.height / addH));
+  // const helloCalc = charH + (addH - charH);
+  // hellow.style.height = helloCalc + 'px';
 }
 
 function changeQuality (){
@@ -234,7 +254,11 @@ function typeGrid () {
 const fontObserver = new MutationObserver(mutationsList => {
   for (const mutation of mutationsList) {
     if (mutation.type === 'attributes' && (mutation.attributeName === 'data-quality')) {
+    // old way of chang'g font size
+      // measureFS = parseInt(measure.style.fontSize);
+      // let measureFS = bgCont.className;
 
+    // new way of chang'g font size
       n = parseInt(bgCont.getAttribute('data-quality'));
       bgCont.className = 'q-' + n;
       textWrap.className = 'q-' + n;
@@ -252,8 +276,7 @@ fontObserver.observe(bgCont, config)
 
 window.addEventListener('DOMContentLoaded', typeFill);
 window.addEventListener('resize', typeFill);
-// window.addEventListener('afterprint', typeFill)
-lq.addEventListener('click', changeQuality);
-nq.addEventListener('click', changeQuality);
-hq.addEventListener('click', changeQuality);
-grid.addEventListener('click', typeGrid);
+lq.addEventListener('click', changeQuality)
+nq.addEventListener('click', changeQuality)
+hq.addEventListener('click', changeQuality)
+grid.addEventListener('click', typeGrid)
