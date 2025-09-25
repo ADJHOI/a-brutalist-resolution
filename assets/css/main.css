@@ -121,6 +121,14 @@ p, #measure{
     overflow-wrap: break-word;
 }
 
+.border-1{
+    /* font-weight: 500; */
+}
+
+.border-2{
+    opacity: 0.5;
+}
+
 .character-grid{
     opacity: 0.25;
 }
